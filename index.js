@@ -1,5 +1,5 @@
 const mysql2 = require('mysql2')
-const inquirer = require('inquirer')
+const inquirer = require('inquirer');
 require("console.table")
 
 const db = mysql2.createConnection({
@@ -10,7 +10,7 @@ const db = mysql2.createConnection({
 });
 
 db.connect(() => {
-    console.log("You are now connected to the database")
+    console.log('You are now connected to the database!')
 })
 
 function startPrompt () {
@@ -56,3 +56,13 @@ function startPrompt () {
             }
         })
 }
+
+function viewAllDepartments() {
+    connection.query('SELECT * FROM department', function (err, res) {
+        if (err) throw (err);
+        console.table(res);
+        startPrompt();
+    });
+};
+
+startPrompt();

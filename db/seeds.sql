@@ -1,12 +1,14 @@
-USE employee_db
+USE fourseasons_db
 
 INSERT INTO departments (department_name)
 VALUES
-    ("Sales/Finance"),
-    ("Human Resources"),
-    ("Research and Development");
+    ("Finance"),
+    ("HR"),
+    ("Food and Beverage");
+    ("Front Desk");
 
-INSERT INTO roles (title, salary, department_id)
+
+INSERT INTO roles (job_title, salary, department_id)
 VALUES
 ('CEO', 1000000, 1),
 ('HR Manager', 90000, 2),
@@ -14,6 +16,7 @@ VALUES
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES
-('Bruce', 'Randolph', 1, 1),
-('Kelcie', 'Smithers', 2, 4),
-('Melvin', 'McBride', 3, 8);
+('Leigh', 'Bricker', 1, 1),
+('Samantha', 'Gates', 2, 2),
+('Leroy', 'Jenkins', 3, 3),
+('Benny', 'Heckerman', 4, 4);

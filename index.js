@@ -85,4 +85,25 @@ function viewAllRoles() {
     });
 };
 
+function newDepartment() {
+    inquirer.prompt(
+        {
+            type: 'input',
+            name: 'department_name',
+            message: 'What is the Department title?',
+        }
+    )
+        .then(function (response) {
+            console.log(response.department);
+            db.query("INSERT INTO department SET ?",
+                {
+                    department_name: response.department_name,
+                },
+                function (err, res) {
+                    if (err) throw err;
+                    startPrompt();
+                });
+        });
+};
+
 startPrompt();

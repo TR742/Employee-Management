@@ -1,4 +1,4 @@
 USE fourseasons_db
-SELECT * FROM departments;
+SELECT * FROM department;
 SELECT * FROM roles;
-SELECT * FROM employees;
+SELECT * FROM employee;

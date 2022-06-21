@@ -1,6 +1,6 @@
 const mysql2 = require('mysql2')
 const inquirer = require('inquirer');
-require("console.table")
+const consoleTable = require('console.table');
 
 const db = mysql2.createConnection({
     host: "localhost",
@@ -26,12 +26,13 @@ function startPrompt () {
                 'Add a new Department',
                 'Add a new Role',
                 'Add a new Employee',
-                'Update an Employee Role'
+                'Update an Employee Role',
+                'Exit'
             ]
         }
     ])
         .then(function (response) {
-            switch (response) {
+            switch (response.home) {
                 case 'View all Departments':
                     viewAllDepartments();
                     break;
@@ -53,13 +54,32 @@ function startPrompt () {
                 case 'Update an Employee Role':
                     updateEmployeeRole();
                     break;
+                case 'Exit': db.end();
+                    break;
             }
         })
 }
 
 function viewAllDepartments() {
-    connection.query('SELECT * FROM department', function (err, res) {
+    db.query('SELECT * FROM department', function (err, res) {
         if (err) throw (err);
+        console.table(res);
+        startPrompt();
+    });
+};
+
+function viewAllEmployees() {
+    db.query('SELECT * FROM employee', function (err, res) {
+        if (err) throw err;
+        console.table(res);
+        startPrompt();
+    }
+    );
+};
+
+function viewAllRoles() {
+    db.query('SELECT * FROM roles', function (err, res) {
+        if (err) throw err;
         console.table(res);
         startPrompt();
     });

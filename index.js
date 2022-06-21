@@ -90,7 +90,7 @@ function newDepartment() {
         {
             type: 'input',
             name: 'department_name',
-            message: 'What is the Department title?',
+            message: 'What is the Department name?',
         }
     )
         .then(function (response) {
@@ -98,6 +98,44 @@ function newDepartment() {
             db.query("INSERT INTO department SET ?",
                 {
                     department_name: response.department_name,
+                },
+                function (err, res) {
+                    if (err) throw err;
+                    startPrompt();
+                });
+        });
+};
+
+function newEmployee() {
+    inquirer.prompt(
+        {
+            type: 'input',
+            name: 'first_name',
+            message: 'What is the Employees first name?',
+        },
+        {
+            type: 'input',
+            name: 'last_name',
+            message: 'What is the Employees last name?',
+        },
+        {
+            type: 'input',
+            name: 'role_id',
+            message: 'What is the Employees role ID?',
+        },
+        {
+            type: 'input',
+            name: 'manager_id',
+            message: 'What is the Employees manager ID?',
+        }
+    )
+        .then(function (response) {
+            db.query("INSERT INTO employee SET ?",
+                {
+                    first_name: response.first_name,
+                    last_name: response.last_name,
+                    role_id: response.role_id,
+                    manager_id: response.manager_id,
                 },
                 function (err, res) {
                     if (err) throw err;
